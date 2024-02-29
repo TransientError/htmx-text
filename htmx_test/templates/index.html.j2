@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<title>To do</title>
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+<body>
+  <div class="signed-in-bar">
+    <div>Signed in as: {{signedIn}}</div>
+    <button hx-post="/sign-out" hx-swap="none">Sign out</button>
+  </div>
+  <div class="app-container">
+    <div class="flex-column">
+      <h1>To Do</h1>
+      {% include 'todo_container.html.j2' %}
+      <form 
+        class="flex-column" 
+        hx-post="/create_todo" 
+        hx-target="[id='todo-container']" 
+        hx-on::after-request="this.reset()">
+        <input name="description" type="text" onclick="this.value=''" />
+        <button>create todo</button>
+      </form>
+      <button id="clear-button" hx-post="/clearDone" hx-target="[id='todo-container']">clear done</button>
+    </div>
+  </div>
+</body>

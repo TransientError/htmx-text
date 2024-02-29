@@ -1,0 +1,18 @@
+<div id="todo-container">
+{% if todos %}
+<ul>
+{% for todo in todos %}
+<li 
+  id="todo-item-{{loop.index}}" 
+  class="list-item" 
+  hx-patch="/toggleCheck" 
+  hx-swap="none"
+  hx-vals='{"i": {{loop.index}}}'>
+  <input type="checkbox" {% if todo.done %} checked {% endif %}>{{todo.desc}}
+</li>
+{% endfor %}
+</ul>
+{% else %}
+  There are no todos ☀️
+{% endif %}
+</div>

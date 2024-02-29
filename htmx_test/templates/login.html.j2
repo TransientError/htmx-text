@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<title>To do login</title>
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}" />
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+<body>
+  <div class="app-container">
+    <div class="flex-column">
+      <h1>Sign in</h1>
+      <form class="flex-column sign-in-form">
+        <label for="username">Username</label>
+        <div id="username-error-dialog"></div>
+        <input id="username" name="username" type="text">
+        <label for="password">Password</label>
+        <div id="password-error-dialog"></div>
+        <input id="password" name="password" type="text">
+        <button hx-post="/sign-in">Sign in</button>
+        <button hx-post="/register" hx-swap="none">Register</button>
+      </form>
+    </div>
+  </div>
+</body>
